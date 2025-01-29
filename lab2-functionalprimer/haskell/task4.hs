@@ -1,11 +1,16 @@
+import System.Exit
+
 ask :: String -> IO ()
 ask prompt =
   do
   putStrLn prompt
   line <- getLine
   if line == ""
-    then ask prompt
+    then ask (prompt ++ "!")
+    else if line == "quit"
+      then putStrLn("quitting") >> exitSuccess
     else putStrLn ("you said: " ++ reverse line)
+
 
 main :: IO ()
 main =
